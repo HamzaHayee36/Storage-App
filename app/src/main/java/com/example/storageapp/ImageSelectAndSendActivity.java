@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -17,6 +17,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
     private static final int SELECT_IMAGE = 1;
     private static final long THRESHOLD_SIZE = 1 * 1024 * 1024;  // 1 MB
     Button selectImageButton, acceptSendButton, rejectButton;
+    TextView errorMessageTextView;  // New TextView for error messages
     Uri selectedImageUri;
 
     @Override
@@ -27,6 +28,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
         selectImageButton = findViewById(R.id.selectImageButton);
         acceptSendButton = findViewById(R.id.acceptSendButton);
         rejectButton = findViewById(R.id.rejectButton);
+        errorMessageTextView = findViewById(R.id.errorMessageTextView);  // Initialize the TextView
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +58,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
             public void onClick(View v) {
                 acceptSendButton.setVisibility(View.GONE);
                 rejectButton.setVisibility(View.GONE);
-                Toast.makeText(ImageSelectAndSendActivity.this, "Sending Rejected!", Toast.LENGTH_SHORT).show();
+                errorMessageTextView.setVisibility(View.GONE);  // Hide the error message
             }
         });
     }
@@ -71,9 +73,10 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
                 if (imageSize <= THRESHOLD_SIZE) {
                     acceptSendButton.setVisibility(View.VISIBLE);
                     rejectButton.setVisibility(View.VISIBLE);
-                    Toast.makeText(this, "File is OK to send!", Toast.LENGTH_SHORT).show();
+                    errorMessageTextView.setVisibility(View.GONE);  // Hide the error message
                 } else {
-                    Toast.makeText(this, "File size is too large!", Toast.LENGTH_SHORT).show();
+                    errorMessageTextView.setText("File size is too large!");  // Set the error message
+                    errorMessageTextView.setVisibility(View.VISIBLE);  // Show the error message
                 }
             }
         }
