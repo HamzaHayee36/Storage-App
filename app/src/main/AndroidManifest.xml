@@ -12,6 +12,9 @@
         android:theme="@style/Theme.StorageApp"
         tools:targetApi="31">
         <activity
+            android:name=".ViewLogsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ImageSelectAndSendActivity"
             android:exported="false" />
         <activity

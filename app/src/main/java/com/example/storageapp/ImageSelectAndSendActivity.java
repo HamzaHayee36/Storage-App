@@ -15,7 +15,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
 
     private static final int SELECT_IMAGE = 1;
     private static final long THRESHOLD_SIZE = 1 * 1024 * 1024;  // 1 MB
-    Button selectImageButton, acceptSendButton, rejectButton;
+    Button selectImageButton, acceptSendButton, rejectButton, viewLogsButton;
     TextView errorMessageTextView;
     ImageView selectedImageView;
     Uri selectedImageUri;
@@ -30,6 +30,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
         rejectButton = findViewById(R.id.rejectButton);
         errorMessageTextView = findViewById(R.id.errorMessageTextView);
         selectedImageView = findViewById(R.id.selectedImageView);
+        viewLogsButton = findViewById(R.id.viewLogsButton);  // New added button
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +49,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
                 sendIntent.setType("image/*");
                 startActivity(Intent.createChooser(sendIntent, "Send Image"));
 
-                String logEntry = "Sent image of size: " + getSizeFromUri(selectedImageUri) + " bytes at " + System.currentTimeMillis();
+                String logEntry = "\nSent image of size: " + getSizeFromUri(selectedImageUri) + " bytes at " + System.currentTimeMillis();
                 logDetails(logEntry);
             }
         });
@@ -60,6 +61,15 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
                 rejectButton.setVisibility(View.GONE);
                 errorMessageTextView.setVisibility(View.GONE);
                 selectedImageView.setImageDrawable(null);  // Remove the displayed image
+            }
+        });
+
+        // New listener for the View Logs button
+        viewLogsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ImageSelectAndSendActivity.this, ViewLogsActivity.class);
+                startActivity(intent);
             }
         });
     }

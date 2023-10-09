@@ -48,6 +48,16 @@
             android:visibility="gone"
             android:textSize="16sp"
             android:paddingTop="8dp"/>
+        <Button
+            android:id="@+id/viewLogsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Logs"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
 
     </LinearLayout>
+
 </ScrollView>
