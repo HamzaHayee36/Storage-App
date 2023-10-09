@@ -14,8 +14,15 @@
             android:id="@+id/selectImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Image from Gallery"
+            android:text="Select Image"
             android:layout_marginTop="16dp"/>
+
+        <ImageView
+            android:id="@+id/selectedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitCenter"/>
 
         <Button
             android:id="@+id/acceptSendButton"
