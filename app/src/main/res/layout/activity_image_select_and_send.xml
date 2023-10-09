@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/selectImageButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:text="Select Image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
 
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Image"
-            android:layout_marginTop="16dp"/>
+    <ImageView
+        android:id="@+id/selectedImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/selectImageButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"/>
 
-        <ImageView
-            android:id="@+id/selectedImageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitCenter"/>
+    <Button
+        android:id="@+id/acceptSendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accept and Send"
+        android:layout_below="@+id/selectedImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
 
-        <Button
-            android:id="@+id/acceptSendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accept and Send"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"/>
+    <Button
+        android:id="@+id/rejectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reject"
+        android:layout_below="@+id/acceptSendButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
 
-        <Button
-            android:id="@+id/rejectButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reject"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"/>
+    <TextView
+        android:id="@+id/errorMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:layout_below="@+id/rejectButton"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="8dp"/>
 
-        <TextView
-            android:id="@+id/errorMessageTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_dark"
-            android:visibility="gone"
-            android:textSize="16sp"
-            android:paddingTop="8dp"/>
-        <Button
-            android:id="@+id/viewLogsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Logs"
-            android:layout_gravity="bottom|end"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/viewLogsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Logs"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
 
-
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>
