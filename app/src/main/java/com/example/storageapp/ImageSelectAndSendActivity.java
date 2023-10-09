@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ImageSelectAndSendActivity extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
         rejectButton = findViewById(R.id.rejectButton);
         errorMessageTextView = findViewById(R.id.errorMessageTextView);
         selectedImageView = findViewById(R.id.selectedImageView);
-        viewLogsButton = findViewById(R.id.viewLogsButton);  // New added button
+        viewLogsButton = findViewById(R.id.viewLogsButton);
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +51,8 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
                 sendIntent.setType("image/*");
                 startActivity(Intent.createChooser(sendIntent, "Send Image"));
 
-                String logEntry = "\nSent image of size: " + getSizeFromUri(selectedImageUri) + " bytes at " + System.currentTimeMillis();
+                long timestamp = System.currentTimeMillis();
+                String logEntry = "\nSent image of size: " + getSizeFromUri(selectedImageUri) + " bytes at " + formatTimestamp(timestamp);
                 logDetails(logEntry);
             }
         });
@@ -60,11 +63,10 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
                 acceptSendButton.setVisibility(View.GONE);
                 rejectButton.setVisibility(View.GONE);
                 errorMessageTextView.setVisibility(View.GONE);
-                selectedImageView.setImageDrawable(null);  // Remove the displayed image
+                selectedImageView.setImageDrawable(null);
             }
         });
 
-        // New listener for the View Logs button
         viewLogsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +104,12 @@ public class ImageSelectAndSendActivity extends AppCompatActivity {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    private String formatTimestamp(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(timestamp);
+        return sdf.format(date);
     }
 
     private void logDetails(String details) {
